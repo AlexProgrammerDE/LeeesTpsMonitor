@@ -4,9 +4,9 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.bukkit.Bukkit;
-import net.minecraft.server.v1_12_R1.MinecraftServer;
 import java.io.*;
 import java.net.InetSocketAddress;
+
 public class ReCaptcha {
 
     public static void main() throws IOException {
@@ -29,7 +29,7 @@ public class ReCaptcha {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            String response = contentBuilder.toString().replaceAll("server_tps", String.valueOf(MinecraftServer.getServer().recentTps[0])).replaceAll("server_playercount", String.valueOf(Bukkit.getServer().getOnlinePlayers().size())).replaceAll("server_playerlist", String.valueOf(PlayerGeter.getPlayers()));
+            String response = contentBuilder.toString().replaceAll("server_tps", String.valueOf(Bukkit.getServer().getTPS()[0]).replaceAll("server_playercount", String.valueOf(Bukkit.getServer().getOnlinePlayers().size())).replaceAll("server_playerlist", String.valueOf(PlayerGeter.getPlayers())));
             try {
                 t.sendResponseHeaders(200, response.length());
             } catch (IOException e) {
